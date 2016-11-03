@@ -1,0 +1,11 @@
+root-context¿¡ beannameview.... download....
+
+service¿¡downloadview.....
+
+boardcontroller applicationcontextaware ,boarddownload
+
+
+select * from 
+(select rownum numrow, A.* from
+(select * from board where ${selectbox} like '%'||#{find}||'%' order by b_ref desc , b_step asc) A )
+where numrow > #{startrow} and numrow <= #{endrow})
