@@ -50,4 +50,7 @@
 		<select id="Countconfirm" parameterType="String" resultType="int">
 			select count(*) from salary where no=#{no}
 		</select>
+		<delete id="deleterollrow" parameterType="String">
+			delete from salaryroll where yyyymm=#{yyyymm}
+		</delete>
 	</mapper>

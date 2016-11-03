@@ -1,7 +1,9 @@
 package com.naver.dlghdud740;
 
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
@@ -45,6 +47,20 @@ public class SalaryController {
 	@RequestMapping(value = "/salary_insert", method = RequestMethod.GET)
 	public String salary_insert() {	
 		return "salary/salary_insert";
+	}
+	
+	@RequestMapping(value = "/salarycreate", method = RequestMethod.GET)
+	public ModelAndView salarycreate() {
+		SimpleDateFormat simple = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss", Locale.KOREA);
+		Date currentdate = new Date();
+		SimpleDateFormat df = new SimpleDateFormat("yyyy", Locale.KOREA);
+		String year = df.format(currentdate);
+		SimpleDateFormat mf = new SimpleDateFormat("MM", Locale.KOREA);
+		String month = mf.format(currentdate);
+		ModelAndView mav = new ModelAndView("salary/salary_create");
+		mav.addObject("year",year);
+		mav.addObject("month",month);
+		return mav;
 	}
 	
 	@RequestMapping(value = "/salaryinsertform", method = RequestMethod.POST)
@@ -133,6 +149,15 @@ public class SalaryController {
 		mav.addObject("no",no);
 		return mav;
 	}
+	@RequestMapping(value = "/salarycreateyn", method = RequestMethod.POST)
+	public ModelAndView salarycreateyn( @RequestParam("yyyy") String yyyy,@RequestParam("mm") String mm) {
+		SalaryDao dao = sqlSession.getMapper(SalaryDao.class);
+		dao.deleterollrow(yyyy+mm);
+		System.out.println(mm);
+		ArrayList<Salary> salarys= dao.selectsalaryAll();
+		ModelAndView mav = new ModelAndView("jQuerytest/board_list");
+		return mav;
+	}
 	@RequestMapping(value = "/salaryupdateform", method = RequestMethod.POST)
 	public ModelAndView salaryupdateform(@ModelAttribute("salary") Salary salary ) {
 		SalaryDao dao = sqlSession.getMapper(SalaryDao.class);
@@ -198,7 +223,6 @@ public class SalaryController {
 		int endrow = startrow + 10;
 		salarypaging.setStartrow(startrow);
 		salarypaging.setEndrow(endrow);
-		
 		ArrayList<Salary> salarys = dao.selectPageList(salarypaging);
 		if(rowcount>0 && rowcount%pageSize != 0)
 			absPage = 1;

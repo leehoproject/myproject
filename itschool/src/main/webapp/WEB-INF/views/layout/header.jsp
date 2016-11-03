@@ -36,7 +36,7 @@
 					<li ><a href="list">리스트</a></li>
 					<li ><a href="board_list">게시판</a></li>
 					<li ><a href="salary">관리</a></li>
-					<li ><a href="login_demo">로그인</a></li>
+					<li ><a href="salarycreate">월급여생성</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<c:choose>

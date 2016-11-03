@@ -18,4 +18,5 @@ public interface SalaryDao {
 	public int insertsalary(Salary salary);
 	public ArrayList<Salary> selectsalaryAll();
 	public int Countconfirm(String no); 
+	public int deleterollrow(String yyyymm); 
 }

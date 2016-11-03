@@ -38,7 +38,7 @@ import com.naver.dlghdud740.service.MemberDao;
 @Controller
 public class BoardController implements ApplicationContextAware{
 	@Autowired
-	private Board board1111222222333333;
+	private Board board;
 	@Autowired
 	private SqlSession sqlSession;
 	private WebApplicationContext context =null;
