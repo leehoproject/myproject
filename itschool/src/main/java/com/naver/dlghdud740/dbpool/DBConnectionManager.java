@@ -18,7 +18,7 @@ public class DBConnectionManager {
 	private String _driver = "oracle.jdbc.driver.OracleDriver";
 	private String _user = "itschool";
     private String _url = "jdbc:oracle:thin:@localhost:1521:XE";    
-    private String _password = "1234";
+    private String _password = "oracle1024";
     
     private boolean _traceOn = false;
     private boolean initialized = false;

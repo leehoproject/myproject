@@ -2,8 +2,9 @@ package com.naver.dlghdud740;
 
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.ArrayList;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,6 +25,7 @@ import com.naver.dlghdud740.entities.BoardPaging;
 import com.naver.dlghdud740.entities.Member;
 import com.naver.dlghdud740.entities.Salary;
 import com.naver.dlghdud740.entities.SalaryPaging;
+import com.naver.dlghdud740.entities.SalaryRoll;
 import com.naver.dlghdud740.service.BoardDao;
 import com.naver.dlghdud740.service.MemberDao;
 import com.naver.dlghdud740.service.SalaryDao;
@@ -38,6 +40,10 @@ import oracle.net.aso.e;
 public class SalaryController {
 	@Autowired
 	private Salary salary;
+	
+	@Autowired
+	private SalaryRoll salaryroll;	
+	
 	@Autowired
 	private SqlSession sqlSession;
 	private int selectedPage;
@@ -149,15 +155,7 @@ public class SalaryController {
 		mav.addObject("no",no);
 		return mav;
 	}
-	@RequestMapping(value = "/salarycreateyn", method = RequestMethod.POST)
-	public ModelAndView salarycreateyn( @RequestParam("yyyy") String yyyy,@RequestParam("mm") String mm) {
-		SalaryDao dao = sqlSession.getMapper(SalaryDao.class);
-		dao.deleterollrow(yyyy+mm);
-		System.out.println(mm);
-		ArrayList<Salary> salarys= dao.selectsalaryAll();
-		ModelAndView mav = new ModelAndView("jQuerytest/board_list");
-		return mav;
-	}
+
 	@RequestMapping(value = "/salaryupdateform", method = RequestMethod.POST)
 	public ModelAndView salaryupdateform(@ModelAttribute("salary") Salary salary ) {
 		SalaryDao dao = sqlSession.getMapper(SalaryDao.class);
@@ -234,6 +232,30 @@ public class SalaryController {
 		mav.addObject("salarypaging",salarypaging);
 		mav.addObject("salarys",salarys);
 		mav.addObject("pages",pages);
+		
+		return mav;
+	}
+	
+	
+	@RequestMapping(value = "/salarycreateyn", method = RequestMethod.POST)
+	public ModelAndView salarycreateyn( @RequestParam("yyyy") String yyyy,@RequestParam("mm") String mm) {
+		SalaryDao dao = sqlSession.getMapper(SalaryDao.class);
+		dao.deleterollrow(yyyy+mm);
+		ArrayList<Salary> salarys= dao.selectsalaryAll();
+		ModelAndView mav = new ModelAndView("jQuerytest/board_list");
+		List<SalaryRoll> salaryrolls = new ArrayList<SalaryRoll> ();
+		for(Salary salary : salarys){
+			
+			System.out.println(salary.getNo());
+			salaryroll = new SalaryRoll();
+			salaryroll.setYyyymm(yyyy+mm);
+			salaryroll.setNo(salary.getNo());
+			salaryroll.setAmount(salary.getBase()+salary.getExtrapay2());
+			salaryroll.setAmount12(salaryroll.getAmount()*12);
+			salaryrolls.add(salaryroll);
+		}
+		
+		dao.insertRollrow(salaryrolls);
 		
 		return mav;
 	}

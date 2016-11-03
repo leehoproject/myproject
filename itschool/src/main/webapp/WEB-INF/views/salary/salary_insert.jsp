@@ -56,7 +56,7 @@
 	<div class="col-sm-3"></div>
 	<div class="col-sm-6" style="border:1px solid #dddddd;">
 		
-		<div class="row" style="border-bottom:1px solid #eeeeee;  background-color:#cccccc ">
+		<div class="row" style="border-bottom:1px solid #eeeeee;  background-color:#ff4848 ">
 			<div class="col-sm-4" ></div>
 			<div class="col-sm-4" style="text-align:center;" >
 				<font face="Arial Black" color="#ffffff" size="6">정보입력</font>
