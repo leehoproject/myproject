@@ -1,0 +1,55 @@
+	.div-bgcolor-red{
+		background: #ff0000;
+	}
+	.div-bgcolor-green{
+		font-family:inherit;
+		font-size:30px;
+		background: #00ff00;
+	}
+	.div-bgcolor-blue{
+		background: #0000ff;
+	}
+	.div-bgcolor-white{
+		background: #ffffff;
+	}
+	.div-bgcolor-black{
+		background: #000000;
+	}
+	.con-new{
+		width: 50%;
+		margin-top: 8px;
+		margin-right: auto;
+  		margin-left: auto;
+	}
+	.con-new2{
+		width: 40%;
+  		margin-top: 5px
+	}
+	.con-new3{
+		width: 90%;
+		margin-top: 7px
+	}
+	.con-new4{
+		margin-top: 7px;
+
+	}
+	.con-new5{
+		margin-top: 8px;
+		width: 40%;
+		margin-right: auto;
+  		margin-left: auto;
+	}
+	.margin1{
+		margin-right: auto;
+  		margin-left: auto;
+	}
+	.margin{
+  		margin-bottom : 5px;
+	}
+	.margin-top{
+		margin-top: 8px
+	}
+	.margin2{
+		margin-top:3px
+	}
+

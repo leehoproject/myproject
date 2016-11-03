@@ -1,0 +1,10 @@
+@autowired -> 객체를 알아서 생성해준다.
+
+jquery로 버튼추가하기
+$("example_filter").append("<button id='selectdel' style='margin-left:350px;'>선택삭제</button>");
+
+-홈컨트롤러 requestmapping내에서 다른 requestmapping을 가져오는 방법
+
+return "redirect:value"; --->리턴에 redirect를 써서 다른 메소드로 이동
+
+확인취소 alert창 --> confirm();

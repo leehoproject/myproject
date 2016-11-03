@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- default directory 설정 -->
+
+<decorators defaultdir="/WEB-INF/views">
+
+	<!-- sample -->
+
+	<decorator name="home" page="layout/layout.jsp">
+		<pattern>/</pattern>
+	</decorator>
+	<decorator name="main-body" page="layout/main-body.jsp"/>
+	<decorator name="footer" page="layout/footer.jsp"/>
+	<decorator name="header" page="layout/header.jsp"/>
+	<decorator name="list" page="layout/list.jsp"/>
+	<decorator name="board_list" page="jQuerytest/board_list.jsp"/>
+	<decorator name="login" page="jQuerytest/login.jsp"/>
+	<decorator name="member_update_form" page="jQuerytest/member_update_form.jsp"/>
+	<decorator name="jQquerytest" page="jQuerytest/jQuerytest.jsp"/>
+
+	<!-- decorators를 적용시키지 않을 url 패턴 -->
+
+	<excludes>
+		<pattern>/excludes/*</pattern>
+	</excludes>
+
+</decorators>

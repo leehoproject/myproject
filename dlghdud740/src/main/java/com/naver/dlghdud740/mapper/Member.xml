@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="com.naver.dlghdud740.service.MemberDao">
+		
+		<resultMap type="com.naver.dlghdud740.entities.Member" id="memberMap">
+			<id property="id" column="id" />
+			<id property="password" column="password" />
+			<id property="phone1" column="phone1" />
+			<id property="phone2" column="phone2" />
+			<id property="phone3" column="phone3" />
+			<id property="zipcode" column="zipcode" />
+			<id property="addr1" column="addr1" />
+			<id property="addr2" column="addr2" />
+			<id property="email" column="email" />
+			<id property="cardno" column="cardno" />
+			<id property="inputdate" column="inputdate" />
+			<id property="job" column="job" />
+			<id property="memberlevel" column="memberlevel" />
+			<id property="photo" column="photo" />
+			<id property="name" column="name" />
+		</resultMap>
+		
+		<select id="selectOne" parameterType="String" resultMap="memberMap">
+			select * from member where id=#{id}
+		</select>
+		<select id="selectAll" resultMap="memberMap">
+			select * from member
+		</select>
+		<select id="selectCount" parameterType="String" resultType="int">
+			select count(*) from member where id=#{id}
+		</select>
+		<select id="selectLogin" parameterType="hashMap" resultMap="memberMap">
+			select * from member where id=#{id} and password=#{password}
+		</select>
+		<insert id="insertRow" parameterType="hashMap">
+			insert into member(id,password,phone1,phone2,phone3,zipcode,addr1,addr2,cardno,name) 
+			values(#{id},#{password},#{phone1},#{phone2},#{phone3},#{zipcode},#{addr1},#{addr2},#{cardno},#{name})
+		</insert>
+		<update id="updateRow" parameterType="hashMap">
+			update member set password=#{password},phone1=#{phone1},phone2=#{phone2},phone3=#{phone3},zipcode=#{zipcode},addr1=#{addr1},addr2=#{addr2}
+			,cardno=#{cardno},name=#{name} where id=#{id}
+		</update>
+		<delete id="deleteRow" parameterType="String">
+			delete from member where id=#{id}
+		</delete>
+	</mapper>

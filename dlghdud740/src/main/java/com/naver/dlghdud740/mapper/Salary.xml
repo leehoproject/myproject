@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="com.naver.dlghdud740.service.SalaryDao">
+		<resultMap type="com.naver.dlghdud740.entities.Salary" id="salaryMap">
+			<id property="no" column="no" />
+			<id property="name" column="name" />
+			<id property="dept" column="dept" />
+			<id property="partner" column="partner" />
+			<id property="dependent20" column="dependent20" />
+			<id property="dependent60" column="dependent60" />
+			<id property="base" column="base" />
+			<id property="extrapay1" column="extrapay1" />
+			<id property="extrapay2" column="extrapay2" />
+
+		</resultMap>
+		
+		<insert id="insertsalary" parameterType="hashMap">
+			insert into salary(no,name,dept,partner,dependent20,dependent60,base,extrapay1,extrapay2) 
+			values(#{no},#{name},#{dept},#{partner},#{dependent20},#{dependent60},#{base},#{extrapay1},#{extrapay2})
+		</insert>
+		<insert id="insertrollrow" parameterType="java.util.List">
+			INSERT ALL
+			<foreach collection="list" item="element" index="index">
+			into salaryroll (yyyymm,no,amount,amount12,incometax,income,humandeduct,special,standard,calculatetax,incometaxdeduct,decisiontax12,decisiontax) values(#{element.yyyymm},#{element.no},#{element.amount},#{element.amount12},#{element.incometax},#{element.income},#{element.humandeduct},#{element.special},#{element.standard},#{element.calculatetax},#{element.incometaxdeduct},#{element.decisiontax12},#{element.decisiontax})
+			</foreach>
+			SELECT * FROM dual
+		</insert>
+		<select id="selectsalaryAll" resultMap="salaryMap">
+			select * from 
+			(select rownum numrow, A.* from
+			(select * from salary order by no desc) A )
+			where numrow > 0 and numrow<![CDATA[<=]]> 10
+		</select>
+		<select id="selectCountAll" parameterType="hashMap" resultType="int">
+			select count(*) from salary
+		</select>
+		<update id="updatesalary" parameterType="hashMap">
+			update salary set name=#{name},dept=#{dept},partner=#{partner},dependent20=#{dependent20},dependent60=#{dependent60},base=#{base},extrapay1=#{extrapay1},extrapay2=#{extrapay2} where no=#{no}
+		</update>
+		<select id="selectsalaryOne" parameterType="String" resultMap="salaryMap">
+			select * from salary where no=#{no}
+		</select>
+		<delete id="deletesalaryOne" parameterType="String">
+			delete from salary where no=#{no}
+		</delete>
+		<select id="selectCount" parameterType="hashMap" resultType="int">
+			select count(*) from salary where ${selectbox} like '%'||#{find}||'%'
+		</select>
+		<select id="selectPageList" resultMap="salaryMap">
+			select * from 
+			(select rownum numrow, A.* from
+			(select * from salary where ${selectbox} like '%'||#{find}||'%' order by no desc) A )
+			where numrow > #{startrow} and numrow<![CDATA[<=]]> #{endrow}			
+		</select>
+		<select id="Countconfirm" parameterType="String" resultType="int">
+			select count(*) from salary where no=#{no}
+		</select>
+		<delete id="deleterollrow" parameterType="String">
+			delete from salaryroll where yyyymm=#{yyyymm}
+		</delete>
+		
+		<insert id="insertRollrow" parameterType="java.util.List">
+			INSERT ALL
+			<foreach collection="list" item="element" index="index" >
+			INTO salaryroll(yyyymm,no) 
+			values
+			(#{element.yyyymm},#{element.no})
+			</foreach>
+			SELECT * FROM dual 
+		</insert>		
+	</mapper>
