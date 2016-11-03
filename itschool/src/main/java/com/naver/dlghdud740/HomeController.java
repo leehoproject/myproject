@@ -38,7 +38,7 @@ import com.naver.dlghdud740.service.MemberDao;
 @Controller
 public class HomeController {
 	@Autowired
-	private Member member;AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+	private Member member;AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
 	@Autowired
 	private Board Board;
 	@Autowired
