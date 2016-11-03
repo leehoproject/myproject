@@ -52,6 +52,10 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
+		return "redirect:/home";
+	}
+	@RequestMapping(value = "/home", method = RequestMethod.GET)
+	public String home2(Locale locale, Model model) {	
 		return "layout/main-body";
 	}
 	@RequestMapping(value = "/memberInsert", method = RequestMethod.POST)
