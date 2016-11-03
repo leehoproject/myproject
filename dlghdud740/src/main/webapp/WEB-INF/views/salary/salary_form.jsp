@@ -68,7 +68,7 @@
 					<div class="form-control">
 					<center>
 						<input type="radio" id="partner" name="partner" value="1" ${salary.partner=='1'?'checked':''}>유
-						<input type="radio" id="partner" name="partner" value="2"<c:if test="${salary.getPartner()=='2'}"> checked="checked"</c:if>>무
+						<input type="radio" id="partner" name="partner" value="0"<c:if test="${salary.getPartner()=='0'}"> checked="checked"</c:if>>무
 					</center>
 					</div>
 				</div>

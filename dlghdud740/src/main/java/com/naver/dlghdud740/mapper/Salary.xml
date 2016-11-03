@@ -23,7 +23,7 @@
 		<insert id="insertrollrow" parameterType="java.util.List">
 			INSERT ALL
 			<foreach collection="list" item="element" index="index">
-			into salaryroll (yyyymm,no,amount,amount12,incometax,income,humandeduct,special,standard,calculatetax,incometaxdeduct,decisiontax12,decisiontax) values(#{element.yyyymm},#{element.no},#{element.amount},#{element.amount12},#{element.incometax},#{element.income},#{element.humandeduct},#{element.special},#{element.standard},#{element.calculatetax},#{element.incometaxdeduct},#{element.decisiontax12},#{element.decisiontax})
+			into salaryroll (yyyymm,no,amount,amount12,incometax,income,humandeduct,special,standard,calculatetax,incometaxdeduct,decisiontax12,decisiontax,insurance) values(#{element.yyyymm},#{element.no},#{element.amount},#{element.amount12},#{element.incometax},#{element.income},#{element.humandeduct},#{element.special},#{element.standard},#{element.calculatetax},#{element.incometaxdeduct},#{element.decisiontax12},#{element.decisiontax},#{element.insurance})
 			</foreach>
 			SELECT * FROM dual
 		</insert>
@@ -60,14 +60,5 @@
 		<delete id="deleterollrow" parameterType="String">
 			delete from salaryroll where yyyymm=#{yyyymm}
 		</delete>
-		
-		<insert id="insertRollrow" parameterType="java.util.List">
-			INSERT ALL
-			<foreach collection="list" item="element" index="index" >
-			INTO salaryroll(yyyymm,no) 
-			values
-			(#{element.yyyymm},#{element.no})
-			</foreach>
-			SELECT * FROM dual 
-		</insert>		
+				
 	</mapper>

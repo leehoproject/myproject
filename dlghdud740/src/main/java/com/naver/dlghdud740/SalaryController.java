@@ -165,7 +165,54 @@ public class SalaryController {
 			salaryroll.setNo(salary.getNo());
 			salaryroll.setAmount(salary.getBase()+salary.getExtrapay1()+salary.getExtrapay2());
 			salaryroll.setAmount12(salaryroll.getAmount() * 12);
-			salaryrolls.add(salaryroll);			
+			int incometax = 0;
+			if(salaryroll.getAmount12() < 5000001){
+				incometax = (int) (salaryroll.getAmount12() * 0.7);
+			} else if(salaryroll.getAmount12() < 15000001) {
+				incometax = (int) (3500000+ (salaryroll.getAmount12()-5000000) * 0.4);
+			} else if(salaryroll.getAmount12() < 45000001) {
+				incometax = (int) (7500000+ (salaryroll.getAmount12()-15000000) * 0.15);
+			} else if(salaryroll.getAmount12() < 100000001) {
+				incometax = (int) (12000000+ (salaryroll.getAmount12()-45000000) * 0.05);
+			} else {
+				incometax = (int) (14750000+ (salaryroll.getAmount12()-100000000) * 0.02);
+			}
+			salaryroll.setIncometax(incometax);
+			int temp = (int) (salaryroll.getAmount() * 0.0001);
+			temp=temp*1000;
+			temp=(int) (( temp * 0.045 )* 0.1 * 10) *12;
+			salaryroll.setInsurance(temp);
+			int dependent = salary.getPartner() + salary.getDependent20() + salary.getDependent60();
+			temp = dependent * 1500000;
+			salaryroll.setHumandeduct(temp);
+			int addtemp = (int) ((40000000 - salaryroll.getAmount12()) *0.04);
+			salaryrolls.add(salaryroll);
+			temp = 0;
+			if( (salaryroll.getAmount12() <30000001) && (dependent == 1))
+				temp = (int) (3100000 + (salaryroll.getAmount12()*0.04));
+			if( (salaryroll.getAmount12() <30000001) && (dependent == 2))
+				temp = (int) (3600000 + (salaryroll.getAmount12()*0.04));
+			if( (salaryroll.getAmount12() <30000001) && (dependent > 2))
+				temp = (int) (5000000 + (salaryroll.getAmount12()*0.07)) +addtemp;
+			if( (salaryroll.getAmount12() > 30000000 && salaryroll.getAmount12() < 45000001) && (dependent == 1))
+				temp = (int) ((3100000 + (salaryroll.getAmount12()*0.04)) -( (salaryroll.getAmount12() - 30000000)*0.05));
+			if( (salaryroll.getAmount12() > 30000000 && salaryroll.getAmount12() < 45000001) && (dependent == 2))
+				temp = (int) ((3600000 + (salaryroll.getAmount12()*0.04)) -( (salaryroll.getAmount12() - 30000000)*0.05));
+			if( (salaryroll.getAmount12() > 30000000 && salaryroll.getAmount12() < 45000001) && (dependent > 2))
+				temp = (int) (((5000000 + (salaryroll.getAmount12()*0.07)) -( (salaryroll.getAmount12() - 30000000)*0.05))) +addtemp ;
+			if( (salaryroll.getAmount12() > 45000000 && salaryroll.getAmount12() < 70000001) && (dependent == 1))
+				temp = (int) (3100000 + (salaryroll.getAmount12()*0.015));
+			if( (salaryroll.getAmount12() > 45000000 && salaryroll.getAmount12() < 70000001) && (dependent == 2))
+				temp = (int) (3600000 + (salaryroll.getAmount12()*0.02));
+			if( (salaryroll.getAmount12() > 45000000 && salaryroll.getAmount12() < 70000001) && (dependent > 2))
+				temp = (int) (5000000 + (salaryroll.getAmount12()*0.05))+addtemp;
+			if( (salaryroll.getAmount12() > 70000000 && salaryroll.getAmount12() < 120000001) && (dependent == 1))
+				temp = (int) (3100000 + (salaryroll.getAmount12()*0.005));
+			if( (salaryroll.getAmount12() > 70000000 && salaryroll.getAmount12() < 120000001) && (dependent == 2))
+				temp = (int) (3600000 + (salaryroll.getAmount12()*0.01));
+			if( (salaryroll.getAmount12() > 70000000 && salaryroll.getAmount12() < 120000001) && (dependent > 2))
+				temp = (int) (5000000 + (salaryroll.getAmount12()*0.03))+addtemp;
+			salaryroll.setSpecial(temp);
 		}
 		dao.insertrollrow(salaryrolls);
 		ModelAndView mav = new ModelAndView("salary/salary_list");

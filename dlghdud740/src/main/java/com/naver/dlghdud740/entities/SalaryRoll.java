@@ -11,12 +11,20 @@ public class SalaryRoll {
 	private int incometax;
 	private int income;
 	private int humandeduct;
+	private int insurance;
 	private int special;
 	private int standard;
 	private int calculatetax;
 	private int incometaxdeduct;
 	private int decisiontax12;
 	private int decisiontax;
+	
+	public int getInsurance() {
+		return insurance;
+	}
+	public void setInsurance(int insurance) {
+		this.insurance = insurance;
+	}
 	public String getYyyymm() {
 		return yyyymm;
 	}

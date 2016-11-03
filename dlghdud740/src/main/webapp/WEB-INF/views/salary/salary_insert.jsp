@@ -110,7 +110,7 @@
 					<span class="input-group-addon">배우자</span>
 					<div class="form-control">
 						<input type="radio" id="partner" name="partner" value="1" >유
-						<input type="radio" id="partner" name="partner" value="2" checked="checked">무
+						<input type="radio" id="partner" name="partner" value="0" checked="checked">무
 					</div>
 				</div>
 			</div>
@@ -160,6 +160,14 @@
 				<div class="input-group"  style="margin-top: 10px; margin-bottom: 10px;">
 					<span class="input-group-addon">수당2</span>
 					<input class="form-control" id="extrapay2" name="extrapay2" maxlength="11"/>
+				</div>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col-sm-6">
+				<div class="input-group"  style="margin-top: 10px; margin-bottom: 10px;">
+					<span class="input-group-addon">국민연금</span>
+					<input class="form-control" id="insurance" name="insurance" maxlength="11"/>
 				</div>
 			</div>
 		</div>	

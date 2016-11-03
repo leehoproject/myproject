@@ -49,7 +49,7 @@
 						<span class="col-md-1" style=" border:1px solid #fff;height:40px;padding:2px">${salarys.dept}</span>
 						<span class="col-md-1" style=" border:1px solid #fff;height:40px;padding:2px">
 						<c:if test="${salarys.partner =='1'}">유</c:if>
-						<c:if test="${salarys.partner =='2'}">무</c:if>
+						<c:if test="${salarys.partner =='0'}">무</c:if>
 						</span>
 						<span class="col-md-1" style=" border:1px solid #fff; height:40px;padding:2px">${salarys.dependent20}</span>
 						<span class="col-md-1" style=" border:1px solid #fff; height:40px;padding:2px">${salarys.dependent60}</span>
